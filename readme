@@ -1,0 +1,19 @@
+# SimShock for Android
+
+**A hemodynamic medical simulation game for Android.**
+
+## 📥 Download
+The APK is available in the [Releases](../../releases) section of this repository.
+
+## 📲 Installation instructions
+1. Download the file **SimShock.apk** from the Releases page.
+2. On your Android device, go to **Settings → Security**.
+3. Enable **Allow installation from unknown sources**  
+   (on newer Android versions: **Settings → Apps → Special access → Install unknown apps**).
+4. Open the file and install the app.
+5. Start the game from the **SimShock** icon.
+
+## ℹ️ Notes
+- The APK file is signed and ready to install.  
+- Make sure to uninstall any older version before installing updates.  
+- This project is distributed for educational and entertainment purposes.
