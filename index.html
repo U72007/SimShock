@@ -1,66 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>SimShock for Android</title>
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      text-align: center; 
-      margin: 0; 
-      background: #f8f9fa;
-    }
-    header {
-      background: #d62828;
-      padding: 20px;
-    }
-    header img {
-      max-width: 200px;
-    }
-    h1 { 
-      color: #d62828; 
-      margin-top: 30px;
-    }
-    p { font-size: 18px; }
-    a.button {
-      display: inline-block;
-      background: #2a9d8f;
-      color: white;
-      padding: 15px 30px;
-      font-size: 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 20px;
-    }
-    a.button:hover { background: #21867a; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SimShock</title>
+<style>
+  :root{
+    --red:#b8291f;
+    --red-dark:#8f1f17;
+    --teal:#4f9e94;
+    --teal-dark:#3d8177;
+    --ink:#222;
+    --soft:#5a5a5a;
+    --line:#e3e3e3;
+    --bg:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+  }
+  header{
+    background:var(--red);
+    color:#fff;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:1.3rem;
+    font-weight:bold;
+  }
+  header img{
+    height:28px;
+    width:28px;
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+    text-align:center;
+  }
+  h1{
+    color:var(--red);
+    font-size:2.4rem;
+    margin:8px 0 6px;
+  }
+  .subtitle{
+    font-size:1.15rem;
+    color:var(--ink);
+    margin-bottom:44px;
+  }
+  section{
+    margin-bottom:44px;
+    text-align:left;
+  }
+  section h2{
+    font-size:1.1rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--soft);
+    border-bottom:1px solid var(--line);
+    padding-bottom:8px;
+    margin-bottom:18px;
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    background:var(--teal);
+    color:#fff;
+    text-decoration:none;
+    font-size:1.15rem;
+    font-weight:bold;
+    padding:16px 22px;
+    border-radius:8px;
+    margin-bottom:14px;
+    transition:background 0.15s ease;
+  }
+  .btn:hover{ background:var(--teal-dark); }
+  .btn .icon{ font-size:1.3rem; flex:none; }
+  .btn .label{ flex:1; }
+  .btn .device{
+    font-size:0.72rem;
+    font-weight:normal;
+    opacity:0.85;
+    display:block;
+    margin-top:2px;
+  }
+  .btn.pending{
+    background:#eee;
+    color:var(--soft);
+    cursor:default;
+  }
+  .btn.pending:hover{ background:#eee; }
+  .btn.secondary{
+    background:#fff;
+    color:var(--teal-dark);
+    border:2px solid var(--teal);
+  }
+  .btn.secondary:hover{ background:#f2f9f8; }
+  .legal{
+    margin-top:50px;
+    padding:18px 20px;
+    background:#f7f7f7;
+    border-radius:8px;
+    font-size:0.82rem;
+    color:var(--soft);
+    text-align:left;
+  }
+  .legal strong{ color:var(--ink); }
+  footer{
+    text-align:center;
+    padding:24px;
+    font-size:0.8rem;
+    color:var(--soft);
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="https://u72007.github.io/SimShock/logo.png" alt="SimShock Logo">
-  </header>
 
-  <h1>📲 SimShock for Android</h1>
-  <p>A hemodynamic shock simulation game for Android devices.</p>
+<header>
+  SimShock
+</header>
 
-  <!-- Botón APK principal -->
-  <a class="button" href="https://github.com/u72007/SimShock/releases/latest/download/SimShock.apk">
-    ⬇️ Download SimShock.apk
-  </a>
+<main>
+  <h1>SimShock</h1>
+  <p class="subtitle">Un juego de simulación de shock hemodinámico, disponible en iOS, Android, Windows y Mac.</p>
 
-  <br><br>
+  <section>
+    <h2>Apple — iOS · iPadOS · macOS</h2>
+    <a class="btn" href="https://apps.apple.com/es/app/simshockpad/id6746765214" target="_blank" rel="noopener">
+      <span class="icon">🍎</span>
+      <span class="label">SimShockPad<span class="device">iPhone · iPad · Mac M1/M4 · App Store</span></span>
+    </a>
+    <a class="btn" href="https://apps.apple.com/es/app/simshockdesktop/id6748229083?mt=12" target="_blank" rel="noopener">
+      <span class="icon">🍎</span>
+      <span class="label">SimShockDesktop<span class="device">macOS Intel &amp; ARM64 · App Store</span></span>
+    </a>
+  </section>
 
-  <!-- Botón APK v2 -->
-  <a class="button" href="https://github.com/u72007/SimShock/releases/latest/download/SimShock.v2.apk">
-    ⬇️ Download SimShock v2.apk
-  </a>
+  <section>
+    <h2>Android</h2>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.pkessler.simshock" target="_blank" rel="noopener">
+      <span class="icon">▶</span>
+      <span class="label">Google Play<span class="device">com.pkessler.simshock</span></span>
+    </a>
+    <a class="btn secondary" href="https://amazon.es/dp/B0FR2KXCVC" target="_blank" rel="noopener">
+      <span class="icon">⬇</span>
+      <span class="label">Amazon Appstore<span class="device">Fire · Tablets</span></span>
+    </a>
+    <a class="btn secondary" href="https://simshock.en.aptoide.com/app" target="_blank" rel="noopener">
+      <span class="icon">⬇</span>
+      <span class="label">Aptoide<span class="device">APK directo</span></span>
+    </a>
+  </section>
 
-  <br><br>
+  <section>
+    <h2>Windows</h2>
+    <a class="btn" href="https://apps.microsoft.com/detail/9nrj1g4qjgc3" target="_blank" rel="noopener">
+      <span class="icon">🪟</span>
+      <span class="label">Microsoft Store<span class="device">9NRJ1G4QJGC3</span></span>
+    </a>
+  </section>
 
-  <!-- Botón README -->
-  <a class="button" href="https://github.com/u72007/SimShock/releases/latest/download/Readme.SimShock.Android.txt">
-    📄 Readme (Android)
-  </a>
+  <section>
+    <h2>Multiplataforma &amp; descarga directa</h2>
+    <a class="btn" href="https://store.steampowered.com/app/3704810/SimShock2025/" target="_blank" rel="noopener">
+      <span class="icon">🎮</span>
+      <span class="label">Steam<span class="device">Windows · Mac</span></span>
+    </a>
+    <div class="btn pending">
+      <span class="icon">⏳</span>
+      <span class="label">Steam — HemoSim<span class="device">Actualización en revisión, disponible próximamente</span></span>
+    </div>
+    <a class="btn secondary" href="https://github.com/U72007/SimShock/releases" target="_blank" rel="noopener">
+      <span class="icon">📄</span>
+      <span class="label">GitHub Releases<span class="device">Binarios de todas las versiones</span></span>
+    </a>
+  </section>
+
+  <section>
+    <h2>Comunidad</h2>
+    <a class="btn secondary" href="https://reddit.com/r/SimShockPad" target="_blank" rel="noopener">
+      <span class="icon">💬</span>
+      <span class="label">Reddit<span class="device">r/SimShockPad · info y comunidad</span></span>
+    </a>
+  </section>
+
+  <div class="legal">
+    <strong>Aviso legal.</strong> SimShock es un juego que representa situaciones fisiopatológicas de forma simplificada. No es una herramienta educativa ni una guía clínica. No ofrece consejos médicos ni establece recomendaciones de ningún tipo. Consulta siempre a profesionales sanitarios.
+  </div>
+</main>
+
+<footer>SimShock — desarrollado por Pablo Kessler</footer>
 
 </body>
 </html>
