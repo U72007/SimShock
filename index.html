@@ -28,6 +28,7 @@
     padding:18px 24px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
     gap:10px;
     font-size:1.3rem;
     font-weight:bold;
@@ -36,6 +37,18 @@
     height:28px;
     width:28px;
   }
+  #lang-toggle{
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.6);
+    border-radius:6px;
+    font-size:0.85rem;
+    font-weight:bold;
+    padding:6px 14px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  #lang-toggle:hover{ background:rgba(255,255,255,0.28); }
   main{
     max-width:760px;
     margin:0 auto;
@@ -123,12 +136,13 @@
 <body>
 
 <header>
-  SimShock
+  <span>SimShock</span>
+  <button id="lang-toggle" type="button" onclick="setLang(currentLang === 'es' ? 'en' : 'es')">EN</button>
 </header>
 
 <main>
   <h1>SimShock</h1>
-  <p class="subtitle">Un juego de simulación de shock hemodinámico, disponible en iOS, Android, Windows y Mac.</p>
+  <p class="subtitle" data-i18n="subtitle">Un juego de simulación de shock hemodinámico, disponible en iOS, Android, Windows y Mac.</p>
 
   <section>
     <h2>Apple — iOS · iPadOS · macOS</h2>
@@ -163,31 +177,77 @@
   </section>
 
   <section>
-    <h2>Multiplataforma &amp; descarga directa</h2>
+    <h2 data-i18n="section-multi">Multiplataforma &amp; descarga directa</h2>
     <a class="btn" href="https://store.steampowered.com/app/3704810/SimShock2025/" target="_blank" rel="noopener">
       <span class="icon">🎮</span>
       <span class="label">Steam<span class="device">Windows · Mac</span></span>
     </a>
     <div class="btn pending">
       <span class="icon">⏳</span>
-      <span class="label">Steam — HemoSim<span class="device">Actualización en revisión, disponible próximamente</span></span>
+      <span class="label">Steam — HemoSim<span class="device" data-i18n="hemosim-status">Actualización en revisión, disponible próximamente</span></span>
     </div>
   </section>
 
   <section>
-    <h2>Comunidad</h2>
+    <h2 data-i18n="section-community">Comunidad</h2>
     <a class="btn secondary" href="https://reddit.com/r/SimShockPad" target="_blank" rel="noopener">
       <span class="icon">💬</span>
       <span class="label">Reddit<span class="device">r/SimShockPad · info y comunidad</span></span>
     </a>
   </section>
 
-  <div class="legal">
+  <div class="legal" data-i18n-html="legal">
     <strong>Aviso legal.</strong> SimShock es un juego que representa situaciones fisiopatológicas de forma simplificada. No es una herramienta educativa ni una guía clínica. No ofrece consejos médicos ni establece recomendaciones de ningún tipo. Consulta siempre a profesionales sanitarios.
   </div>
 </main>
 
-<footer>SimShock — desarrollado por Pablo Kessler</footer>
+<footer data-i18n="footer">SimShock — desarrollado por Pablo Kessler</footer>
+
+<script>
+  var i18n = {
+    es: {
+      subtitle: "Un juego de simulación de shock hemodinámico, disponible en iOS, Android, Windows y Mac.",
+      "section-multi": "Multiplataforma & descarga directa",
+      "section-community": "Comunidad",
+      "hemosim-status": "Actualización en revisión, disponible próximamente",
+      legal: "<strong>Aviso legal.</strong> SimShock es un juego que representa situaciones fisiopatológicas de forma simplificada. No es una herramienta educativa ni una guía clínica. No ofrece consejos médicos ni establece recomendaciones de ningún tipo. Consulta siempre a profesionales sanitarios.",
+      footer: "SimShock — desarrollado por Pablo Kessler",
+      toggle: "EN"
+    },
+    en: {
+      subtitle: "A hemodynamic shock simulation game, available on iOS, Android, Windows, and Mac.",
+      "section-multi": "Cross-platform & direct download",
+      "section-community": "Community",
+      "hemosim-status": "Update under review, available soon",
+      legal: "<strong>Disclaimer.</strong> SimShock is a game that represents physiopathological situations in a simplified way. It is not an educational tool or a clinical guide. It does not offer medical advice or recommendations of any kind. Always consult healthcare professionals.",
+      footer: "SimShock — developed by Pablo Kessler",
+      toggle: "ES"
+    }
+  };
+
+  var currentLang = "es";
+
+  function setLang(lang){
+    currentLang = lang;
+    var dict = i18n[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      el.textContent = dict[el.getAttribute("data-i18n")];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){
+      el.innerHTML = dict[el.getAttribute("data-i18n-html")];
+    });
+    document.getElementById("lang-toggle").textContent = dict.toggle;
+    try { localStorage.setItem("simshock-lang", lang); } catch(e){}
+  }
+
+  (function init(){
+    var saved = null;
+    try { saved = localStorage.getItem("simshock-lang"); } catch(e){}
+    var initial = saved || (navigator.language && navigator.language.toLowerCase().indexOf("en") === 0 ? "en" : "es");
+    setLang(initial);
+  })();
+</script>
 
 </body>
 </html>
