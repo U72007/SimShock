@@ -182,10 +182,26 @@
       <span class="icon">🎮</span>
       <span class="label">Steam<span class="device">Windows · Mac</span></span>
     </a>
+
+    <a class="btn secondary" href="https://u7200.itch.io/simshockandroid" target="_blank" rel="noopener">
+      <span class="icon">⬇</span>
+      <span class="label">itch.io<span class="device" data-i18n="itch-device">Windows · macOS · Android · descarga directa</span></span>
+    </a>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         HEMOSIM · cuando esté publicado en Steam: borra el bloque gris de
+         abajo y descomenta el enlace que le sigue, poniendo ahí su URL.
+         ══════════════════════════════════════════════════════════════════ -->
     <div class="btn pending">
       <span class="icon">⏳</span>
       <span class="label">Steam — HemoSim<span class="device" data-i18n="hemosim-status">Actualización en revisión, disponible próximamente</span></span>
     </div>
+    <!--
+    <a class="btn" href="PON_AQUI_LA_URL_DE_HEMOSIM" target="_blank" rel="noopener">
+      <span class="icon">🎮</span>
+      <span class="label">Steam — HemoSim<span class="device">Windows · Mac</span></span>
+    </a>
+    -->
   </section>
 
   <section>
@@ -209,6 +225,7 @@
       subtitle: "Un juego de simulación de shock hemodinámico, disponible en iOS, Android, Windows y Mac.",
       "section-multi": "Multiplataforma & descarga directa",
       "section-community": "Comunidad",
+      "itch-device": "Windows · macOS · Android · descarga directa",
       "hemosim-status": "Actualización en revisión, disponible próximamente",
       legal: "<strong>Aviso legal.</strong> SimShock es un juego que representa situaciones fisiopatológicas de forma simplificada. No es una herramienta educativa ni una guía clínica. No ofrece consejos médicos ni establece recomendaciones de ningún tipo. Consulta siempre a profesionales sanitarios.",
       footer: "SimShock — desarrollado por Pablo Kessler",
@@ -218,6 +235,7 @@
       subtitle: "A hemodynamic shock simulation game, available on iOS, Android, Windows, and Mac.",
       "section-multi": "Cross-platform & direct download",
       "section-community": "Community",
+      "itch-device": "Windows · macOS · Android · direct download",
       "hemosim-status": "Update under review, available soon",
       legal: "<strong>Disclaimer.</strong> SimShock is a game that represents physiopathological situations in a simplified way. It is not an educational tool or a clinical guide. It does not offer medical advice or recommendations of any kind. Always consult healthcare professionals.",
       footer: "SimShock — developed by Pablo Kessler",
@@ -228,14 +246,20 @@
   var currentLang = "es";
 
   function setLang(lang){
+    // Si llega un idioma que no está en la tabla, se cae a español en lugar
+    // de reventar. Puede ocurrir si localStorage guarda un valor corrupto.
+    if (!i18n[lang]) { lang = "es"; }
+
     currentLang = lang;
     var dict = i18n[lang];
     document.documentElement.lang = lang;
     document.querySelectorAll("[data-i18n]").forEach(function(el){
-      el.textContent = dict[el.getAttribute("data-i18n")];
+      var txt = dict[el.getAttribute("data-i18n")];
+      if (txt !== undefined) { el.textContent = txt; }
     });
     document.querySelectorAll("[data-i18n-html]").forEach(function(el){
-      el.innerHTML = dict[el.getAttribute("data-i18n-html")];
+      var html = dict[el.getAttribute("data-i18n-html")];
+      if (html !== undefined) { el.innerHTML = html; }
     });
     document.getElementById("lang-toggle").textContent = dict.toggle;
     try { localStorage.setItem("simshock-lang", lang); } catch(e){}
@@ -244,7 +268,15 @@
   (function init(){
     var saved = null;
     try { saved = localStorage.getItem("simshock-lang"); } catch(e){}
-    var initial = saved || (navigator.language && navigator.language.toLowerCase().indexOf("es") === 0 ? "es" : "en");
+    if (saved !== "es" && saved !== "en") { saved = null; }
+
+    var idioma = (navigator.language || "").toLowerCase();
+    var initial = saved || (idioma.indexOf("es") === 0 ? "es" : "en");
+
+    // ESTA LLAMADA FALTABA. Sin ella se calculaba el idioma y no se aplicaba
+    // nunca: la página abría siempre en español, ignoraba el idioma del
+    // navegador y no recordaba la elección anterior del visitante.
+    setLang(initial);
   })();
 </script>
 
