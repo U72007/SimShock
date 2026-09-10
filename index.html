@@ -78,6 +78,14 @@
     padding-bottom:8px;
     margin-bottom:18px;
   }
+  /* Nota explicativa bajo un epígrafe. La usa la sección de la versión
+     arcade, para que quede claro qué es antes de que nadie pulse. */
+  .nota{
+    font-size:0.88rem;
+    color:var(--soft);
+    line-height:1.5;
+    margin:-6px 0 16px;
+  }
   .btn{
     display:flex;
     align-items:center;
@@ -178,25 +186,34 @@
 
   <section>
     <h2 data-i18n="section-multi">Multiplataforma &amp; descarga directa</h2>
-    <a class="btn" href="https://store.steampowered.com/app/3704810/SimShock2025/" target="_blank" rel="noopener">
-      <span class="icon">🎮</span>
-      <span class="label">Steam<span class="device">Windows · Mac</span></span>
-    </a>
-
-    <a class="btn secondary" href="https://u7200.itch.io/simshockandroid" target="_blank" rel="noopener">
+    <a class="btn" href="https://u7200.itch.io/simshockandroid" target="_blank" rel="noopener">
       <span class="icon">⬇</span>
       <span class="label">itch.io<span class="device" data-i18n="itch-device">Windows · macOS · Android · descarga directa</span></span>
     </a>
 
     <!-- ══════════════════════════════════════════════════════════════════
          HEMOSIM · a partir del 23 de septiembre de 2026, cambia el texto de
-         la línea pequeña por "Windows · macOS" en las dos tablas de idioma
-         (clave "hemosim-status"), y si quieres, quita la clase "secondary"
-         para que quede en verde como el Steam de arriba.
+         la clave "hemosim-status" por "Windows · macOS" en los dos idiomas,
+         y quita la clase "secondary" para que pase a verde.
          ══════════════════════════════════════════════════════════════════ -->
     <a class="btn secondary" href="https://store.steampowered.com/app/5220360/HemoSim/" target="_blank" rel="noopener">
       <span class="icon">🎮</span>
       <span class="label">Steam — HemoSim<span class="device" data-i18n="hemosim-status">Se publica el 23 de septiembre · añádelo a tu lista de deseados</span></span>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       VERSIÓN ARCADE · sección aparte, a propósito.
+       SimShock2025 es la primera versión: más rápida, más desenfadada y con
+       la fisiopatología menos ajustada. Separarla evita que alguien que
+       llega buscando la versión actual se la encuentre sin avisar.
+       ══════════════════════════════════════════════════════════════════════ -->
+  <section>
+    <h2 data-i18n="section-arcade">Versión arcade</h2>
+    <p class="nota" data-i18n="arcade-note">La primera versión, de 2025. Más rápida y desenfadada, con la fisiopatología menos ajustada y un humor más suelto. Se mantiene tal como estaba y ya no recibe actualizaciones.</p>
+    <a class="btn secondary" href="https://store.steampowered.com/app/3704810/SimShock2025/" target="_blank" rel="noopener">
+      <span class="icon">🕹️</span>
+      <span class="label">Steam — SimShock2025<span class="device">Windows · Mac</span></span>
     </a>
   </section>
 
@@ -220,6 +237,8 @@
     es: {
       subtitle: "Un juego de simulación de shock hemodinámico, disponible en iOS, Android, Windows y Mac.",
       "section-multi": "Multiplataforma & descarga directa",
+      "section-arcade": "Versión arcade",
+      "arcade-note": "La primera versión, de 2025. Más rápida y desenfadada, con la fisiopatología menos ajustada y un humor más suelto. Se mantiene tal como estaba y ya no recibe actualizaciones.",
       "section-community": "Comunidad",
       "itch-device": "Windows · macOS · Android · descarga directa",
       "hemosim-status": "Se publica el 23 de septiembre · añádelo a tu lista de deseados",
@@ -230,6 +249,8 @@
     en: {
       subtitle: "A hemodynamic shock simulation game, available on iOS, Android, Windows, and Mac.",
       "section-multi": "Cross-platform & direct download",
+      "section-arcade": "Arcade version",
+      "arcade-note": "The original 2025 version. Faster and more light-hearted, with looser pathophysiology and a freer sense of humour. Kept as it was and no longer updated.",
       "section-community": "Community",
       "itch-device": "Windows · macOS · Android · direct download",
       "hemosim-status": "Releases 23 September · add it to your wishlist",
